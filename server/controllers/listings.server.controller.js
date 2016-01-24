@@ -47,19 +47,20 @@ exports.read = function(req, res) {
 exports.update = function(req, res) {
   var listing = req.listing;
 
-/*Sarah'sssssssssssssssssssssssssssssssssssssssssssssssssssss*/
+  /*Sarah'sssssssssssssssssssssssssssssssssssssssssssssssssssss*/
   /* Replace the article's properties with the new properties found in req.body */
-listing.name = req.body.name;
-listing.code = req.body.code;
-listing.address = req.body.address;
+  listing.name = req.body.name;
+  listing.code = req.body.code;
+  listing.address = req.body.address;
   /* save the coordinates (located in req.results if there is an address property) */
- if(req.results.address) {
-    listing.coordinates = {
-      latitude: req.results.lat, 
-      longitude: req.results.lng
-    };
-  /* Save the article */
-  listing.save();
+   if(req.results.address) {
+      listing.coordinates = {
+        latitude: req.results.lat, 
+        longitude: req.results.lng
+      };
+    /* Save the article */
+    listing.save();
+  };
 };
 
 /* Delete a listing */
