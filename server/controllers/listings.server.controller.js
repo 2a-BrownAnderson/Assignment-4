@@ -58,9 +58,17 @@ exports.update = function(req, res) {
         latitude: req.results.lat, 
         longitude: req.results.lng
       };
+    };
+
     /* Save the article */
-    listing.save();
-  };
+    listing.save(function (err) {
+      if (err) {
+        console.log(err);
+        res.status(400).send(err);
+      } else {
+        res.json(listing);
+      }
+    });    
 };
 
 /* Delete a listing */
@@ -69,7 +77,13 @@ exports.delete = function(req, res) {
 
   /* Remove the article */
   listing.remove(function(err) {
-    if (err) throw err;
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    } 
+    else {
+      res.json(listing);
+    }
   });
 };
 
@@ -80,6 +94,7 @@ exports.list = function(req, res) {
       if (err) throw err;
       console.log('\nAll Listings\n');
       console.log(listings);
+      res.json(listings);
      });
 };
 

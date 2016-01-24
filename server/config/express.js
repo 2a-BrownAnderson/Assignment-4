@@ -34,7 +34,7 @@ module.exports.init = function() {
 
 
   /* go to homepage for all routes not specified */ 
-  app.use('*',express.static('client'));
+  app.use('/*',express.static('client'));
 
   return app;
 };  
